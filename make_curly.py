@@ -12,7 +12,7 @@ def main():
         make_curly(sys.argv[1], 'output.txt')
 
 def make_curly(input_file_path, output_file_path):
-    with open(input_file_path, 'r') as input:
+    with open(input_file_path, 'r', encoding='utf-8') as input:
         content = input.read() # original content of input file
         text = []              # modified chars
         expect_open = True     # use open curly quotes
@@ -32,14 +32,14 @@ def make_curly(input_file_path, output_file_path):
                 expect_open = False
             else:
                 text.append(char) # add other text
-                if char == ' ' or char == '\n':
+                if char == ' ' or char == '\n' or char == '—':
                     expect_open = True
                 else:
                     expect_open = False
 
         new_content = ''.join(text) # modified string
     
-    with open(output_file_path, 'w') as output:
+    with open(output_file_path, 'w', encoding='utf-8') as output:
         output.write(new_content)
 
 if __name__ == "__main__":
